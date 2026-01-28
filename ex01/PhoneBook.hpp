@@ -6,9 +6,8 @@ class PhoneBook
 {
 
     private:
-        /* data */
-    public:
-        PhoneBook(/* args */);
-        ~PhoneBook();
+        Contact contacts[8]; // массив из 8 контактов
+        int currentIndex;    // индекс для нового контакта
+        int totalContacts;
 };
 
