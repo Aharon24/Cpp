@@ -10,17 +10,15 @@ private:
     std::string lastName;
     std::string nickname;
     std::string phoneNumber;
-    std::string darkestSecret;
 
 public:
     void setContact(const std::string &fName, const std::string &lName,
-                    const std::string &nick, const std::string &phone,
-                    const std::string &secret);
+                    const std::string &nick, const std::string &phone
+                );
     std::string getFirstName() const;
     std::string getLastName() const;
     std::string getNickname() const;
     std::string getPhoneNumber() const;
-    std::string getDarkestSecret() const;
 };
 
 #endif
