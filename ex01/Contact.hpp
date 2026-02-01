@@ -20,5 +20,4 @@ public:
     std::string getNickname() const;
     std::string getPhoneNumber() const;
 };
-
 #endif
