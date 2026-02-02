@@ -12,13 +12,16 @@ int ft_chesk(int i)
 }
 
 
-int main (int argc)
+int main(int argc, char *argv[])
 {
 	std::string command;
 	PhoneBook book;
 
 	if (ft_chesk(argc) == 1)
+	{
+		std::cout<< "wrong" << argv[1] << "\n";
 		return (1);
+	}
 	while(1)
 	{
 		std::cout << "Enter a command (ADD, SEARCH, EXIT): ";

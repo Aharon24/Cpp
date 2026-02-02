@@ -1,29 +1,53 @@
 #include "PhoneBook.hpp"
 
-int PhoneBook::ft_chesk_number(std::string name)
+int PhoneBook::ft_chesk_name(const std::string& data)
 {
-
+    for (size_t i = 0; i < data.size(); i++)
+    {
+        if (!std::isalpha(static_cast<unsigned char>(data[i])))
+            return 0;
+    }
+    return 1;
 }
 
-int PhoneBook::ft_chesk_name(std::string name)
-{  
 
+void ft_set_data(std::string data, int type)
+{
+    if (type = 1)
+        
+}
+
+int PhoneBook::ft_chesk_data(std::string data, int type)
+{
+    if (type == 1)
+    {
+        if (ft_chesk_name(data))
+            return(1);
+        else
+            return (0);
+    }
+    return (1);
+    //else if ()
 }
 
 
 void PhoneBook::ft_set_contact()
 {
-
     std::string Data;
     std::cout << "Write first Name\n";
     getline(std::cin, Data);
+    if (ft_chesk_data(Data, 1))
+        ft_set_data(Data,1);
     std::cout << "Write lastName \n";
     getline(std::cin, Data);
-
+    if (ft_chesk_data(Data, 1))
+        ft_set_data(Data,2);
     std::cout << "Write nick name\n";
     getline(std::cin, Data);
-
+    ft_set_data(Data,3);
     std::cout << "Write phone number \n";
+    std::cout << "exemple 098 78 78 78 \n";
     getline(std::cin, Data);
-
+    if (ft_chesk_data(Data, 2))
+        ft_set_data(Data,4);
 }
