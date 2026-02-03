@@ -1,5 +1,10 @@
 #include "PhoneBook.hpp"
 
+PhoneBook::PhoneBook()
+{
+    currentIndex = 0;
+    totalContacts = 0;
+}
 int PhoneBook::ft_chesk_name(const std::string& data)
 {
     for (size_t i = 0; i < data.size(); i++)
@@ -10,12 +15,6 @@ int PhoneBook::ft_chesk_name(const std::string& data)
     return 1;
 }
 
-
-void ft_set_data(std::string data, int type)
-{
-    if (type = 1)
-        
-}
 
 int PhoneBook::ft_chesk_data(std::string data, int type)
 {
@@ -30,24 +29,48 @@ int PhoneBook::ft_chesk_data(std::string data, int type)
     //else if ()
 }
 
-
 void PhoneBook::ft_set_contact()
 {
-    std::string Data;
-    std::cout << "Write first Name\n";
-    getline(std::cin, Data);
-    if (ft_chesk_data(Data, 1))
-        ft_set_data(Data,1);
-    std::cout << "Write lastName \n";
-    getline(std::cin, Data);
-    if (ft_chesk_data(Data, 1))
-        ft_set_data(Data,2);
+    std::string firstName;
+    std::string lastName;
+    std::string nickname;
+    std::string phoneNumber;
+    while (true)
+    {
+        std::cout << "Write first Name\n";
+        if(!getline(std::cin, firstName))
+            break ;
+        if (ft_chesk_data(firstName, 1))
+            break ;
+        else
+            std::cout <<"wrong try agen\n";
+    }
+    while (true)
+    {
+        std::cout << "Write lastName \n";
+        if(!getline(std::cin, lastName))
+            break ;
+        if (ft_chesk_data(lastName, 1))
+            break ;
+        else
+            std::cout <<"wrong try agen\n";
+    }
     std::cout << "Write nick name\n";
-    getline(std::cin, Data);
-    ft_set_data(Data,3);
-    std::cout << "Write phone number \n";
-    std::cout << "exemple 098 78 78 78 \n";
-    getline(std::cin, Data);
-    if (ft_chesk_data(Data, 2))
-        ft_set_data(Data,4);
+    if (!getline(std::cin, nickname))
+        return ;
+    while (true)
+    {
+        std::cout << "Write phone number \n";
+        std::cout << "exemple 098 78 78 78 \n";
+       if (!getline(std::cin, phoneNumber))
+            break ;
+        if (ft_chesk_data(phoneNumber, 2))
+            break ;
+        else
+            std::cout <<"wrong try agen\n";
+    }
+    contacts[currentIndex].setContact(firstName, lastName, nickname, phoneNumber);
+    currentIndex = (currentIndex + 1) % 8;
+    if (totalContacts < 8)
+        totalContacts++;
 }

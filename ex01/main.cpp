@@ -25,7 +25,8 @@ int main(int argc, char *argv[])
 	while(1)
 	{
 		std::cout << "Enter a command (ADD, SEARCH, EXIT): ";
-		std::getline(std::cin, command);
+		if (!std::getline(std::cin, command))
+			break ;
 		if (command == "ADD")
 			book.ft_set_contact();
 		else if (command == "EXIT")
@@ -34,6 +35,5 @@ int main(int argc, char *argv[])
 			return (1);
 		}
 		//else if (command == "SEARCH")
-		
 	}
 }
