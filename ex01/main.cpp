@@ -29,11 +29,12 @@ int main(int argc, char *argv[])
 			break ;
 		if (command == "ADD")
 			book.ft_set_contact();
+		else if (command == "SEARCH")
+			book.ft_get_search();
 		else if (command == "EXIT")
 		{
 			std::cout << "Goodbye!\n";
 			return (1);
 		}
-		//else if (command == "SEARCH")
 	}
 }
