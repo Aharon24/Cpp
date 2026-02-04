@@ -6,14 +6,17 @@ PhoneBook::PhoneBook()
     totalContacts = 0;
 }
 
-std::string PhoneBook::ft_name()
+std::string PhoneBook::ft_name(int &i)
 {
     std::string firstName;
     while (true)
     {
         std::cout << "Write first Name\n";
         if(!getline(std::cin, firstName))
+        {
+            i = -1;
             break ;
+        }
         if (ft_chesk_data(firstName, 1))
             return (firstName);
         else
@@ -22,14 +25,17 @@ std::string PhoneBook::ft_name()
     return (firstName);
 }
 
-std::string PhoneBook::ft_lastname()
+std::string PhoneBook::ft_lastname(int &i)
 {
     std::string lastName;
     while (true)
     {
         std::cout << "Write lastName \n";
         if(!getline(std::cin, lastName))
+        {
+            i = -1;
             break ;
+        }
         if (ft_chesk_data(lastName, 1))
             return (lastName);
         else
@@ -37,15 +43,18 @@ std::string PhoneBook::ft_lastname()
     }
     return (lastName);
 }
-std::string PhoneBook::ft_nick()
+std::string PhoneBook::ft_nick(int &i)
 {
     std::string nickname;
     std::cout << "Write nick name\n";
     if (!getline(std::cin, nickname))
+    {
+        i = -1;
         return (nickname);
+    }
     return (nickname);
 }
-std::string PhoneBook::ft_phone()
+std::string PhoneBook::ft_phone(int &i)
 {
     std::string phoneNumber;
     while (true)
@@ -53,7 +62,10 @@ std::string PhoneBook::ft_phone()
         std::cout << "Write phone number \n";
         std::cout << "exemple 098 78 78 78 \n";
         if (!getline(std::cin, phoneNumber))
+        {
+            i = -1;
             break ;
+        }
         if (ft_chesk_data(phoneNumber, 2))
             break ;
         else
@@ -72,9 +84,47 @@ int PhoneBook::ft_chesk_name(const std::string& data)
     return 1;
 }
 
+int PhoneBook::ft_chesk_number(std::string data)
+{
+    int number;
+
+    for(size_t i = 0; i < data.size(); i++)
+    {
+        if (!std::isdigit(data[i]))
+            return (-1);
+    }
+    number = atoi(data.c_str());
+    if (number >= 8)
+        return (-1);
+    return (number);
+}
+
+int PhoneBook::ft_chesk_phone_number(std::string data)
+{
+    int count_number;
+
+    count_number = 0;
+    for(size_t i = 0; i < data.size(); i++)
+    {
+        if (std::isdigit(data[i]))
+            count_number++;
+        else if ((data[i] != ' '))
+        {
+            std::cout << "wrong\n";
+            return (0);
+        }
+    }
+    if ( count_number != 9)
+    {
+        std::cout << "wrong count of number\n";
+        return (0);
+    }
+    return (1);
+}
 
 int PhoneBook::ft_chesk_data(std::string data, int type)
 {
+    int n;
     if (type == 1)
     {
         if (ft_chesk_name(data))
@@ -82,41 +132,106 @@ int PhoneBook::ft_chesk_data(std::string data, int type)
         else
             return (0);
     }
-    // if (type == 2)
-    // {
-
-    // }
+    if (type == 2)
+    {
+        if (ft_chesk_phone_number(data))
+            return (1);
+        else
+            return (0);
+    }
+    if (type == 3)
+    {
+        n = ft_chesk_number(data);
+        if ((n && n != -1) || n == 0)
+            return (n);
+        else
+            return (-1);
+    }
     return (1);
 }
 
 void PhoneBook::ft_print_contacts(void)
 {
+    for (int i = 0; i < 42; i++)
+    {
+        std::cout << "-";
+    }
+    std::cout << "\n";
     for(int i = 0; i < totalContacts; i++)
     {
-        std::cout << contacts[i].getFirstName() << "  " << contacts[i].getLastName() << "  " ;
-        std::cout << contacts[i].getNickname() << "  "  << contacts[i].getPhoneNumber() << std::endl;
+        std::cout <<"|";
+        std::cout << contacts[i].getFirstName() << "|" << contacts[i].getLastName() << "|" ;
+        std::cout << contacts[i].getNickname() << "|"  << contacts[i].getPhoneNumber() << "|" << std::endl;
     }
 }
 
-void PhoneBook::ft_set_contact()
+void PhoneBook::ft_set_contact(int &i)
 {
     std::string firstName;
     std::string lastName;
     std::string nickname;
     std::string phoneNumber;
-   
-    firstName = ft_name();
-    lastName = ft_lastname();
-    nickname = ft_nick();
-    phoneNumber = ft_phone();
+
+    firstName = ft_name(i);
+    if (i == -1)
+        return ;
+    lastName = ft_lastname(i);
+    if (i == -1)
+        return ;
+    nickname = ft_nick(i);
+    if (i == -1)
+        return ;
+    phoneNumber = ft_phone(i);
+    if (i == -1)
+        return ;
     contacts[currentIndex].setContact(firstName, lastName, nickname, phoneNumber);
     currentIndex = (currentIndex + 1) % 8;
     if (totalContacts < 8)
         totalContacts++;
     ft_print_contacts();
 }
-
-void PhoneBook::ft_get_search(void)
+int PhoneBook::ft_get_total_count()
 {
-    
+    return (totalContacts);
+}
+
+void PhoneBook::ft_print_index(int n)
+{
+    int count;
+
+    count = ft_get_total_count();
+
+    if (n < count)
+    {
+        std::cout <<"|";
+        std::cout << contacts[n].getFirstName() << "|" << contacts[n].getLastName() << "|" ;
+        std::cout << contacts[n].getNickname() << "|"  << contacts[n].getPhoneNumber() << "|" << std::endl;
+    }
+    else
+        std::cout << "wrong index\n";
+}
+
+void   PhoneBook::ft_search(int &i)
+{
+    std::string index;
+    int         n;
+    while (true)
+    {
+        std::cout << "Write index\n";
+        if(!getline(std::cin, index))
+        {
+            i = -1;
+            break ;
+        }
+        n = ft_chesk_data(index, 3);
+        if((n  && n != -1) || n == 0)
+           ft_print_index(n);
+        else
+            std::cout <<"wrong try agen\n";
+    }
+}
+
+void PhoneBook::ft_get_search(int &i)
+{
+    ft_search(i);
 }

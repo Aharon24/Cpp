@@ -14,9 +14,11 @@ int ft_chesk(int i)
 
 int main(int argc, char *argv[])
 {
-	std::string command;
-	PhoneBook book;
+	std::string	command;
+	PhoneBook	book;
+	int			i;
 
+	i = 0;
 	if (ft_chesk(argc) == 1)
 	{
 		std::cout<< "wrong" << argv[1] << "\n";
@@ -24,13 +26,14 @@ int main(int argc, char *argv[])
 	}
 	while(1)
 	{
-		std::cout << "Enter a command (ADD, SEARCH, EXIT): ";
+		if (i != -1)
+			std::cout << "Enter a command (ADD, SEARCH, EXIT): ";
 		if (!std::getline(std::cin, command))
 			break ;
 		if (command == "ADD")
-			book.ft_set_contact();
+			book.ft_set_contact(i);
 		else if (command == "SEARCH")
-			book.ft_get_search();
+			book.ft_get_search(i);
 		else if (command == "EXIT")
 		{
 			std::cout << "Goodbye!\n";
