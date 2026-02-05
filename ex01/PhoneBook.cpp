@@ -188,7 +188,7 @@ void PhoneBook::ft_set_contact(int &i)
     currentIndex = (currentIndex + 1) % 8;
     if (totalContacts < 8)
         totalContacts++;
-    ft_print_contacts();
+    //ft_print_contacts();
 }
 int PhoneBook::ft_get_total_count(void)
 {
@@ -197,6 +197,16 @@ int PhoneBook::ft_get_total_count(void)
 
 void    PhoneBook::ft_print_taype(std::string data, int tp)
 {
+    if (tp == 4)
+    {
+        std::cout << "  ";
+        for(unsigned long i = 0; i < data.size(); i++)
+        {
+            if (data[i] != ' ')
+                std::cout <<data[i];
+        }
+        return ;
+    }
     if (data.size() == 9)
         std::cout << data;
     else if (data.size() > 9)
@@ -215,8 +225,6 @@ void    PhoneBook::ft_print_taype(std::string data, int tp)
         }
         std::cout << data;
     }
-
-
 }
 
 void PhoneBook::ft_print_corect(int n)
@@ -224,16 +232,16 @@ void PhoneBook::ft_print_corect(int n)
     std::string data;
     std::cout <<"|";
     data = contacts[n].getFirstName();
-    ft_print_taype(data, 1);
+    ft_print_taype(data,1);
     std::cout << "|";
     data = contacts[n].getLastName();
-    ft_print_taype(data, 2);
+    ft_print_taype(data,1);
     std::cout  << "|" ;
     data = contacts[n].getNickname();
-    ft_print_taype(data, 3);
+    ft_print_taype(data,1);
     std::cout  << "|";
     data = contacts[n].getPhoneNumber();
-    ft_print_taype(data, 4 );
+    ft_print_taype(data,4);
     std::cout  << "|" << std::endl;
 }
 
