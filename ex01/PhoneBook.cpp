@@ -199,7 +199,7 @@ void    PhoneBook::ft_print_taype(std::string data, int tp)
 {
     if (tp == 4)
     {
-        std::cout << "  ";
+        std::cout << " ";
         for(unsigned long i = 0; i < data.size(); i++)
         {
             if (data[i] != ' ')
@@ -207,19 +207,19 @@ void    PhoneBook::ft_print_taype(std::string data, int tp)
         }
         return ;
     }
-    if (data.size() == 9)
+    if (data.size() == 10)
         std::cout << data;
-    else if (data.size() > 9)
+    else if (data.size() > 10)
     {
-        for(int i = 0; i < 9; i++)
+        for(int i = 0; i < 10; i++)
         {
             std::cout <<data[i];
         }
         std::cout << ".";
     }
-    else if (data.size() < 9)
+    else if (data.size() < 10)
     {
-        for(unsigned long i = 1; i < 9 - data.size(); i++)
+        for(unsigned long i = 1; i <= (unsigned long)10 - data.size(); i++)
         {
             std::cout << " ";
         }
@@ -270,7 +270,10 @@ void   PhoneBook::ft_search(int &i)
         }
         n = ft_chesk_data(index, 3);
         if((n  && n != -1) || n == 0)
+        {
            ft_print_index(n);
+           break;
+        }
         else
             std::cout <<"wrong try agen\n";
     }

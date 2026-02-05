@@ -3,10 +3,7 @@
 int ft_chesk(int i)
 {
 	if (i != 1)
-	{
-		std::cout << "Error wrong argument count\n";
-		return (2);
-	}
+		return (1);
 	std::cout << "Welcome to My Awesome PhoneBook!" << std::endl;
 	return (0);
 }
@@ -21,7 +18,8 @@ int main(int argc, char *argv[])
 	i = 0;
 	if (ft_chesk(argc) == 1)
 	{
-		std::cout<< "wrong" << argv[1] << "\n";
+		std::cout<< "Error\n";
+		std::cout<< "wrong after program name ->" << argv[1] << "\n";
 		return (1);
 	}
 	while(1)
