@@ -173,15 +173,23 @@ void PhoneBook::ft_set_contact(int &i)
     std::string phoneNumber;
 
     firstName = ft_name(i);
+    if (firstName.empty())
+        return ;
     if (i == -1)
         return ;
     lastName = ft_lastname(i);
+    if (lastName.empty())
+        return ;
     if (i == -1)
         return ;
     nickname = ft_nick(i);
+    if (nickname.empty())
+        return ;
     if (i == -1)
         return ;
     phoneNumber = ft_phone(i);
+    if (phoneNumber.empty())
+        return ;
     if (i == -1)
         return ;
     contacts[currentIndex].setContact(firstName, lastName, nickname, phoneNumber);
@@ -239,9 +247,6 @@ void PhoneBook::ft_print_corect(int n)
     std::cout  << "|" ;
     data = contacts[n].getNickname();
     ft_print_taype(data,1);
-    std::cout  << "|";
-    data = contacts[n].getPhoneNumber();
-    ft_print_taype(data,4);
     std::cout  << "|" << std::endl;
 }
 
@@ -250,6 +255,8 @@ void PhoneBook::ft_print_index(int n)
     int count;
 
     count = ft_get_total_count();
+    std::cout << "|";
+    std::cout << "         " <<n;
     if (n < count)
         ft_print_corect(n);
     else
