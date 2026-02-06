@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 	if (ft_chesk(argc) == 1)
 	{
 		std::cout<< "Error\n";
-		std::cout<< "wrong after program name ->" << argv[1] << "\n";
+		std::cout<< "wrong after program name -> " << argv[1] << "\n";
 		return (1);
 	}
 	while(1)
