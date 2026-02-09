@@ -13,6 +13,7 @@ class PhoneBook
         int     totalContacts;
     public:
         PhoneBook();
+        void            ft_print_book_member(void);
         void            ft_print_contacts(void);
         void            ft_get_search(int &i);
         void            ft_set_contact(int &i);
@@ -26,6 +27,7 @@ class PhoneBook
         int             ft_chesk_number(std::string data);
         int             ft_get_total_count(void);
         int             ft_chesk_phone_number(std::string data);
+        std::string     ft_darkest_secret(int &i);
         std::string     ft_name(int &i);
         std::string     ft_lastname(int &i);
         std::string     ft_nick(int &i);
