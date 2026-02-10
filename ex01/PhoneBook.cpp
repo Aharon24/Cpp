@@ -231,7 +231,7 @@ void    PhoneBook::ft_print_taype(std::string data, int tp)
     if (tp == 4)
     {
         std::cout << " ";
-        for(unsigned long i = 0; i < data.size(); i++)
+        for(unsigned long i = 0; i < data.size() - 1; i++)
         {
             if (data[i] != ' ')
                 std::cout <<data[i];
@@ -242,7 +242,7 @@ void    PhoneBook::ft_print_taype(std::string data, int tp)
         std::cout << data;
     else if (data.size() > 10)
     {
-        for(int i = 0; i < 10; i++)
+        for(int i = 0; i < 9; i++)
         {
             std::cout <<data[i];
         }
@@ -258,8 +258,15 @@ void    PhoneBook::ft_print_taype(std::string data, int tp)
     }
 }
 
-void PhoneBook::ft_print_corect(int n)
+void PhoneBook::ft_print_corect(int n, int tp)
 {
+    if (tp == 1)
+    {
+        std::cout << "\n" << "|     index";
+        std::cout << "| firstname" << "| last nime";
+        std::cout << "|  nickname|\n";
+        std::
+    }
     std::string data;
     std::cout <<"|";
     data = contacts[n].getFirstName();
@@ -271,9 +278,12 @@ void PhoneBook::ft_print_corect(int n)
     data = contacts[n].getNickname();
     ft_print_taype(data,1);
     std::cout  << "|";
-    data =  contacts[n].getdarkest_secret();
-    ft_print_taype(data,1);
-    std::cout  << "|";
+    if (tp != 2)
+    {
+        data =  contacts[n].getdarkest_secret();
+        ft_print_taype(data,1);
+        std::cout  << "|";
+    }
     std::cout << "\n";
 }
 
@@ -290,7 +300,7 @@ void PhoneBook::ft_print_index(int n)
     std::cout << "|";
     std::cout << "         " <<n;
     if (n < count)
-        ft_print_corect(n);
+        ft_print_corect(n,1);
     else
         std::cout << "wrong index\n";
 }
@@ -299,9 +309,19 @@ void   PhoneBook::ft_print_book_member(void)
 {
     int n;
 
+    n = 0;
+    int count;
+    count = ft_get_total_count();
+    if (count == 0)
+    {
+        std::cout << "empty book\n";
+        return ;
+    }
+    std::cout << "|";
+    std::cout << "         " <<n;
     for (int i = 0; i <  totalContacts; i++)
     {
-        ft_print_index(n);
+        ft_print_corect(i,2);
     }
 }
 
@@ -310,10 +330,11 @@ void   PhoneBook::ft_search(int &i)
     std::string index;
     int         n;
 
+    n = 0;
     std::cout << "\n" << "|     index";
-    std::cout << "|first name" << "|last nime";
-    std::cout << "|nickname|\n\n";
-
+    std::cout << "| firstname" << "| last nime";
+    std::cout << "|  nickname|\n";
+    ft_print_book_member();
     while (true)
     {
         std::cout << "Write index ";
