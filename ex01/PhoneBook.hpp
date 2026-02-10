@@ -13,7 +13,7 @@ class PhoneBook
         int     totalContacts;
     public:
         PhoneBook();
-        void            ft_print_book_member(void);
+        void            ft_print_book_member(int &b);
         void            ft_print_contacts(void);
         void            ft_get_search(int &i);
         void            ft_set_contact(int &i);

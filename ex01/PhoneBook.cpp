@@ -260,13 +260,6 @@ void    PhoneBook::ft_print_taype(std::string data, int tp)
 
 void PhoneBook::ft_print_corect(int n, int tp)
 {
-    if (tp == 1)
-    {
-        std::cout << "\n" << "|     index";
-        std::cout << "| firstname" << "| last nime";
-        std::cout << "|  nickname|\n";
-        std::
-    }
     std::string data;
     std::cout <<"|";
     data = contacts[n].getFirstName();
@@ -280,6 +273,9 @@ void PhoneBook::ft_print_corect(int n, int tp)
     std::cout  << "|";
     if (tp != 2)
     {
+        data = contacts[n].getPhoneNumber();
+        ft_print_taype(data,1);
+        std::cout  << "|" ;
         data =  contacts[n].getdarkest_secret();
         ft_print_taype(data,1);
         std::cout  << "|";
@@ -297,15 +293,13 @@ void PhoneBook::ft_print_index(int n)
         std::cout << "empty book\n";
         return ;
     }
-    std::cout << "|";
-    std::cout << "         " <<n;
     if (n < count)
         ft_print_corect(n,1);
     else
         std::cout << "wrong index\n";
 }
 
-void   PhoneBook::ft_print_book_member(void)
+void   PhoneBook::ft_print_book_member(int &b)
 {
     int n;
 
@@ -315,6 +309,7 @@ void   PhoneBook::ft_print_book_member(void)
     if (count == 0)
     {
         std::cout << "empty book\n";
+        b = -1;
         return ;
     }
     std::cout << "|";
@@ -329,15 +324,19 @@ void   PhoneBook::ft_search(int &i)
 {
     std::string index;
     int         n;
+    int         b;
 
     n = 0;
+    b = 0;
     std::cout << "\n" << "|     index";
     std::cout << "| firstname" << "| last nime";
     std::cout << "|  nickname|\n";
-    ft_print_book_member();
+    ft_print_book_member(b);
+    if (b == -1)
+        return ;
     while (true)
     {
-        std::cout << "Write index ";
+        std::cout << "Write index: ";
         if(!getline(std::cin, index))
         {
             i = -1;
@@ -348,7 +347,11 @@ void   PhoneBook::ft_search(int &i)
         n = ft_chesk_data(index, 3);
         if((n && n != -1) || n == 0)
         {
-           ft_print_index(n);
+            std::cout << "| firstname" << "| last nime";
+            std::cout << "|  nickname|";
+            std::cout << "     Phone|";
+            std::cout <<"dark secrt|\n";
+            ft_print_index(n);
            break ;
         }
         else
