@@ -299,11 +299,8 @@ void PhoneBook::ft_print_index(int n)
         std::cout << "wrong index\n";
 }
 
-void   PhoneBook::ft_print_book_member(int &b)
+void   PhoneBook::ft_print_book_member(int &b, int n)
 {
-    int n;
-
-    n = 0;
     int count;
     count = ft_get_total_count();
     if (count == 0)
@@ -316,6 +313,11 @@ void   PhoneBook::ft_print_book_member(int &b)
     std::cout << "         " <<n;
     for (int i = 0; i <  totalContacts; i++)
     {
+        if (i != 0)
+        {
+            std::cout << "|";
+            std::cout << "         " << i;
+        }
         ft_print_corect(i,2);
     }
 }
@@ -331,7 +333,7 @@ void   PhoneBook::ft_search(int &i)
     std::cout << "\n" << "|     index";
     std::cout << "| firstname" << "| last nime";
     std::cout << "|  nickname|\n";
-    ft_print_book_member(b);
+    ft_print_book_member(b, n);
     if (b == -1)
         return ;
     while (true)
@@ -347,12 +349,8 @@ void   PhoneBook::ft_search(int &i)
         n = ft_chesk_data(index, 3);
         if((n && n != -1) || n == 0)
         {
-            std::cout << "| firstname" << "| last nime";
-            std::cout << "|  nickname|";
-            std::cout << "     Phone|";
-            std::cout <<"dark secrt|\n";
             ft_print_index(n);
-           break ;
+            break ;
         }
         else
             std::cout <<"wrong try agen\n";
