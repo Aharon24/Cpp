@@ -32,5 +32,5 @@ std::string Contact::getPhoneNumber() const
 
 std::string Contact::getdarkest_secret() const
 {
-     return (darkest_secret);
+    return (darkest_secret);
 }

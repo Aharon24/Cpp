@@ -1,9 +1,13 @@
 #include "PhoneBook.hpp"
 
-int ft_chesk(int i)
+int ft_chesk(int i, char **argv)
 {
 	if (i != 1)
+	{
+		std::cout<< "Error\n";
+		std::cout<< "wrong after program name -> " << argv[1] << "\n";
 		return (1);
+	}
 	std::cout << "Welcome to My Awesome PhoneBook!" << std::endl;
 	return (0);
 }
@@ -16,12 +20,8 @@ int main(int argc, char *argv[])
 	int			i;
 
 	i = 0;
-	if (ft_chesk(argc) == 1)
-	{
-		std::cout<< "Error\n";
-		std::cout<< "wrong after program name -> " << argv[1] << "\n";
+	if (ft_chesk(argc, argv) == 1)
 		return (1);
-	}
 	while(1)
 	{
 		if (i != -1)

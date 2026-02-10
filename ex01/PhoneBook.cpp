@@ -43,6 +43,7 @@ std::string PhoneBook::ft_lastname(int &i)
     }
     return (lastName);
 }
+
 std::string PhoneBook::ft_nick(int &i)
 {
     std::string nickname;
@@ -54,6 +55,7 @@ std::string PhoneBook::ft_nick(int &i)
     }
     return (nickname);
 }
+
 std::string PhoneBook::ft_phone(int &i)
 {
     std::string phoneNumber;
@@ -167,60 +169,57 @@ int PhoneBook::ft_chesk_data(std::string data, int type)
     return (1);
 }
 
-void PhoneBook::ft_print_contacts(void)
+
+int PhoneBook::ft_chesk_all(std::string &f, std::string &l, std::string &n,std::string &p, std::string &d, int &i)
 {
-    for (int i = 0; i < 42; i++)
-    {
-        std::cout << "-";
-    }
-    std::cout << "\n";
-    for(int i = 0; i < totalContacts; i++)
-    {
-        std::cout <<"|";
-        std::cout << contacts[i].getFirstName() << "|" << contacts[i].getLastName() << "|" ;
-        std::cout << contacts[i].getNickname() << "|"  << contacts[i].getPhoneNumber() << "|" << std::endl;
-    }
+    f = ft_name(i);
+    if (f.empty())
+        return (1);
+    if (i == -1)
+        return (1);
+    l = ft_lastname(i);
+    if (l.empty())
+        return (1);
+    if (i == -1)
+        return(1) ;
+    n = ft_nick(i);
+    if (n.empty())
+        return(1) ;
+    if (i == -1)
+        return (1);
+    p = ft_phone(i);
+    if (p.empty())
+        return (1);
+    if (i == -1)
+        return (1);
+    d = ft_darkest_secret(i);
+    if (p.empty())
+        return (1);
+    if (i == -1)
+        return (1);
+    return (0);
 }
 
 void PhoneBook::ft_set_contact(int &i)
 {
-    std::string firstName;
-    std::string lastName;
-    std::string nickname;
-    std::string phoneNumber;
-    std::string darkest_secret;
+    std::string f;
+    std::string l;
+    std::string n;
+    std::string p;
+    std::string d;
 
-    firstName = ft_name(i);
-    if (firstName.empty())
+    if (ft_chesk_all(f, l, n, p, d, i) == 1)
+    {
+        std::cout << "wrong tray agen\n";
         return ;
-    if (i == -1)
-        return ;
-    lastName = ft_lastname(i);
-    if (lastName.empty())
-        return ;
-    if (i == -1)
-        return ;
-    nickname = ft_nick(i);
-    if (nickname.empty())
-        return ;
-    if (i == -1)
-        return ;
-    phoneNumber = ft_phone(i);
-    if (phoneNumber.empty())
-        return ;
-    if (i == -1)
-        return ;
-    darkest_secret = ft_darkest_secret(i);
-    if (phoneNumber.empty())
-        return ;
-    if (i == -1)
-        return ;
-    contacts[currentIndex].setContact(firstName, lastName, nickname, phoneNumber, darkest_secret);
+    }
+    contacts[currentIndex].setContact(f, l, n, p, d);
     currentIndex = (currentIndex + 1) % 8;
     if (totalContacts < 8)
         totalContacts++;
-    //ft_print_contacts();
 }
+
+
 int PhoneBook::ft_get_total_count(void)
 {
     return (totalContacts);
@@ -243,17 +242,13 @@ void    PhoneBook::ft_print_taype(std::string data, int tp)
     else if (data.size() > 10)
     {
         for(int i = 0; i < 9; i++)
-        {
             std::cout <<data[i];
-        }
         std::cout << ".";
     }
     else if (data.size() < 10)
     {
         for(unsigned long i = 1; i <= (unsigned long)10 - data.size(); i++)
-        {
             std::cout << " ";
-        }
         std::cout << data;
     }
 }
@@ -322,17 +317,8 @@ void   PhoneBook::ft_print_book_member(int &b, int n)
     }
 }
 
-void   PhoneBook::ft_search(int &i)
+void   PhoneBook::ft_search(int &i, int &n, int &b, std::string &index)
 {
-    std::string index;
-    int         n;
-    int         b;
-
-    n = 0;
-    b = 0;
-    std::cout << "\n" << "|     index";
-    std::cout << "| firstname" << "| last nime";
-    std::cout << "|  nickname|\n";
     ft_print_book_member(b, n);
     if (b == -1)
         return ;
@@ -359,5 +345,13 @@ void   PhoneBook::ft_search(int &i)
 
 void PhoneBook::ft_get_search(int &i)
 {
-    ft_search(i);
+    std::string index;
+    int         n;
+    int         b;
+
+    n = 0;
+    b = 0;
+    std::cout << "\n" << "|     index" << "| firstname" << "| last nime";
+    std::cout << "|  nickname|\n";
+    ft_search(i, n, b, index);
 }
