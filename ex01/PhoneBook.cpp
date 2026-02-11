@@ -230,7 +230,7 @@ void    PhoneBook::ft_print_taype(std::string data, int tp)
     if (tp == 4)
     {
         std::cout << " ";
-        for(unsigned long i = 0; i < data.size() - 1; i++)
+        for(unsigned long i = 0; i < data.size(); i++)
         {
             if (data[i] != ' ')
                 std::cout <<data[i];
