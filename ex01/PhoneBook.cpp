@@ -269,7 +269,7 @@ void PhoneBook::ft_print_corect(int n, int tp)
     if (tp != 2)
     {
         data = contacts[n].getPhoneNumber();
-        ft_print_taype(data,1);
+        ft_print_taype(data,4);
         std::cout  << "|" ;
         data =  contacts[n].getdarkest_secret();
         ft_print_taype(data,1);
