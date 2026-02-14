@@ -19,7 +19,7 @@ class PhoneBook
         void            ft_set_data(std::string data, int type);
         void            ft_print_index(int n);
         void            ft_search(int &i, int &n, int &b, std::string &index);
-        void            ft_print_corect(int n, int tp);
+        void            ft_print_corect(int n);
         void            ft_print_taype(std::string data, int tp);
         void            ft_print_index_2(int &n);
         int             ft_chesk_all(std::string &f, std::string &l, std::string &n,std::string &p, std::string &d, int &i);
