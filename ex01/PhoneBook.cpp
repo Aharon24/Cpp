@@ -71,7 +71,7 @@ std::string PhoneBook::ft_phone(int &i)
         if (ft_chesk_data(phoneNumber, 2))
             break ;
         else
-            std::cout <<"wrong try agen\n";
+            std::cout <<"wrong try again\n";
     }
     return (phoneNumber);
 }
@@ -210,7 +210,7 @@ void PhoneBook::ft_set_contact(int &i)
 
     if (ft_chesk_all(f, l, n, p, d, i) == 1)
     {
-        std::cout << "wrong tray agen\n";
+        std::cout << "wrong tray again\n";
         return ;
     }
     contacts[currentIndex].setContact(f, l, n, p, d);
@@ -256,6 +256,7 @@ void    PhoneBook::ft_print_taype(std::string data, int tp)
 void PhoneBook::ft_print_corect(int n, int tp)
 {
     std::string data;
+
     std::cout <<"|";
     data = contacts[n].getFirstName();
     ft_print_taype(data,1);
@@ -317,6 +318,12 @@ void   PhoneBook::ft_print_book_member(int &b, int n)
     }
 }
 
+
+void   PhoneBook::ft_print_index_2(int &n)
+{
+    
+}
+
 void   PhoneBook::ft_search(int &i, int &n, int &b, std::string &index)
 {
     ft_print_book_member(b, n);
@@ -335,11 +342,11 @@ void   PhoneBook::ft_search(int &i, int &n, int &b, std::string &index)
         n = ft_chesk_data(index, 3);
         if((n && n != -1) || n == 0)
         {
-            ft_print_index(n);
+            ft_print_index_2(n);
             break ;
         }
         else
-            std::cout <<"wrong try agen\n";
+            std::cout <<"wrong try again\n";
     }
 }
 
