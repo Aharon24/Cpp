@@ -13,12 +13,13 @@ $(NAME): $(OBJS)
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+re: fclean all
+
 clean:
 	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean all
 
 .PHONY: all clean fclean re
