@@ -1,3 +1,7 @@
+
+#ifndef HUMANB
+#define HUMANB
+
 #include "Weapon.hpp"
 class  HumanB
 {
@@ -11,4 +15,4 @@ public:
     void attack() const;
 };
 
-
+#endif

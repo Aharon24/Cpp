@@ -1,5 +1,8 @@
-#include "Weapon.hpp"
 
+#ifndef HUMANA
+#define HUMANA
+
+#include "Weapon.hpp"
 class  HumanA
 {
 private:
@@ -10,3 +13,5 @@ public:
     ~HumanA();
     void attack() const;
 };
+
+#endif

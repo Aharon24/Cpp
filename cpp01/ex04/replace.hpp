@@ -1,3 +1,7 @@
+
+#ifndef REPLACE_HPP
+#define REPLACE_HPP
+
 #include <fstream>
 #include <string>
 #include <iostream>
@@ -14,3 +18,5 @@ class  Replace
         ~Replace ();
         void ft_replace(void);
 };
+
+#endif

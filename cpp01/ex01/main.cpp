@@ -3,8 +3,8 @@
 
 int main(void)
 {
-    Zombie *h = zombieHorde(10,"aaaa");
-    for(int i = 0; i < 10; i++)
+    Zombie *h = zombieHorde(15,"aaaa");
+    for(int i = 0; i < 15; i++)
     {
         std::cout << i << " ";
         h[i].announce();
