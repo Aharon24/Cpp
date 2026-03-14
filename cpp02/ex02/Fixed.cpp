@@ -92,7 +92,7 @@ Fixed Fixed::operator-(const Fixed& other) const
 }
 Fixed Fixed::operator*(const Fixed& other) const
 {
-    Fixed (r);
+    Fixed r;
     long tmp = (long)this->number * (long)other.number;
     (r).setRawBits((int)(tmp >> _fractionalBits));
     return (r);
@@ -121,4 +121,62 @@ float Fixed::toFloat( void ) const
 int Fixed::toInt( void ) const
 {
     return number >> _fractionalBits;
+}
+
+
+
+// ------------------ Prefix Increment/Decrement ------------------
+Fixed& Fixed::operator++() // ++a
+{
+    number++;
+    return *this;
+}
+
+Fixed& Fixed::operator--() // --a
+{
+    number--;
+    return *this;
+}
+
+// ------------------ Postfix Increment/Decrement ------------------
+Fixed Fixed::operator++(int) // a++
+{
+    Fixed temp = *this; 
+    number++;         
+    return temp;       
+}
+
+Fixed Fixed::operator--(int) // a--
+{
+    Fixed temp = *this; 
+    number--;         
+    return temp;        
+}
+
+
+Fixed& Fixed::min(Fixed& a, Fixed& b)
+{
+    if (a < b)
+        return a;    
+    return b;
+}
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
+{
+    if (a < b)
+        return a;
+    return b;
+}
+    // max
+
+Fixed& Fixed::max(Fixed& a, Fixed& b)
+{
+    if (a > b)
+        return a;
+    return b;
+}
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
+{
+    if (a > b)
+        return a;
+    return b;
 }
