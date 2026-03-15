@@ -39,23 +39,11 @@ public:
     Fixed operator*(const Fixed& other) const;
     Fixed operator/(const Fixed& other) const;
 
-
-    /// ++ -- 
-    // prefix increment/decrement
-    Fixed& operator++();    // ++a
-    Fixed& operator--();    // --a
-
-    // postfix increment/decrement
-    Fixed operator++(int);  // a++
-    Fixed operator--(int);  // a--
-
-    // min
-    static Fixed& min(Fixed& a, Fixed& b);
-    static const Fixed& min(const Fixed& a, const Fixed& b);
-
-    // max
-    static Fixed& max(Fixed& a, Fixed& b);
-    static const Fixed& max(const Fixed& a, const Fixed& b);
+    // decrement increment
+    Fixed& operator--();    // pre-decrement
+    Fixed operator--(int);  // post-decrement
+    Fixed& operator++();    // pre-increment
+    Fixed operator++(int);  // post-increment
 
 };
 
