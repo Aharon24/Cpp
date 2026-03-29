@@ -3,7 +3,7 @@
 
 ClapTrap::~ClapTrap()
 {
-
+    
 }
 
 ClapTrap::ClapTrap()
