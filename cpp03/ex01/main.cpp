@@ -5,30 +5,31 @@
 
 int main()
 {
-    std::cout << "--- CONSTRUCTING ---" << std::endl;
+    std::cout << "----------------------------\n" << std::endl;
     ClapTrap clap("Clappy");
-    
     ScavTrap scav("Scavvy");
 
-    std::cout << "\n--- TESTING BASIC INFO ---" << std::endl;
+
+    std::cout << "----------------------------\n" << std::endl;
     clap.attack("a fly");
     scav.attack("an intruder");
 
-    std::cout << "\n--- TESTING REPAIRS AND DAMAGE ---" << std::endl;
+
+    std::cout << "----------------------------\n" << std::endl;
     scav.takeDamage(50);
     scav.beRepaired(20);
     
+    std::cout << "----------------------------\n" << std::endl;
     scav.guardGate();
 
-    std::cout << "\n--- TESTING COPY CONSTRUCTOR ---" << std::endl;
+    std::cout << "----------------------------\n" << std::endl;
     ScavTrap scavCopy(scav);
     scavCopy.attack("the same intruder");
 
-    std::cout << "\n--- TESTING ASSIGNMENT OPERATOR ---" << std::endl;
+    std::cout << "----------------------------\n" << std::endl;
     ScavTrap scavAssign;
     scavAssign = scav;
     scavAssign.guardGate();
 
-    std::cout << "\n--- DESTRUCTING ---" << std::endl;
     return 0;
 }

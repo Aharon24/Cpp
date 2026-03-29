@@ -3,7 +3,7 @@
 
 ClapTrap::~ClapTrap()
 {
-    
+    std::cout << "ClapTrap destructor called for "<< std::endl;
 }
 
 ClapTrap::ClapTrap()
@@ -20,7 +20,7 @@ ClapTrap::ClapTrap(std::string n): name(n)
     hitPoints = 10;
     energyPoints = 10;
     attackDamage = 0;
-     std::cout << "ClapTrap constructor called for " << name << std::endl;
+    std::cout << "ClapTrap constructor called for " << name << std::endl;
 }
 ClapTrap::ClapTrap(const ClapTrap& other)
 {
@@ -60,7 +60,7 @@ void ClapTrap::attack(const std::string& target)
     energyPoints--;
     std::cout   << "ClapTrap "   << name
                 << " attacks "   << target
-                << ", causing "  << hitPoints
+                << ", causing "  << attackDamage
                 << " points of damage!\n";
 }
 void ClapTrap::takeDamage(unsigned int amount)
@@ -78,7 +78,7 @@ void ClapTrap::takeDamage(unsigned int amount)
     std::cout << "ClapTrap " << name
               << " takes " << amount
               << " points of damage! "
-              << "Remaining HP: " << attackDamage
+              << "Remaining HP: " << hitPoints
               << std::endl;
 }
 void ClapTrap::beRepaired(unsigned int amount)
