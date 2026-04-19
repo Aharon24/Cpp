@@ -75,3 +75,12 @@ std::ostream& operator<<(std::ostream& out, const Form& form)
     return out;
 
 }
+const char* Form::GradeTooHighException::what() const throw()
+{
+    return "Form grade too high!";
+}
+
+const char* Form::GradeTooLowException::what() const throw()
+{
+    return "Form grade too low!";
+}

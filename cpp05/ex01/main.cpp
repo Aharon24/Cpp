@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
@@ -62,6 +63,21 @@ int main()
     catch (std::exception &e)
     {
         std::cout << "Caught: " << e.what() << std::endl;
+    }
+    std::cout << "\n=== FORM TEST ===" << std::endl;
+
+    try
+    {
+        Bureaucrat bob("Bob", 50);
+        Form form("FormA", 40, 30);
+
+        std::cout << form << std::endl;
+
+        bob.signForm(form);
+    }
+    catch (std::exception &e)
+    {
+        std::cout << "Error: " << e.what() << std::endl;
     }
 
     return 0;

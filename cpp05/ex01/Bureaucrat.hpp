@@ -8,6 +8,8 @@
 #include <string>
 #include <exception>
 
+
+class Form;
 class Bureaucrat 
 {
 private:
@@ -21,6 +23,7 @@ public:
     Bureaucrat& operator=(const Bureaucrat& other);
     ~Bureaucrat();
 
+    void signForm(Form& form);
 
     std::string getName() const;
     int getGrade() const;
