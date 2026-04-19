@@ -60,5 +60,5 @@
   "editor.semanticTokenColorCustomizations": {
     "enabled": true
   },
-  "C_Cpp.enhancedColorization": "Enabled"
+  "C_Cpp.enhancedColorization": "enabled"
 }
