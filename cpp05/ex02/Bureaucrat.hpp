@@ -9,7 +9,7 @@
 #include <exception>
 
 
-class Form;
+class AForm;
 class Bureaucrat 
 {
 private:
@@ -23,7 +23,8 @@ public:
     Bureaucrat& operator=(const Bureaucrat& other);
     ~Bureaucrat();
 
-    void signForm(Form& form);
+    void signForm(AForm& Aform);
+    void executeForm(AForm const & form) const;
 
     std::string getName() const;
     int getGrade() const;
