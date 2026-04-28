@@ -26,9 +26,7 @@ AForm& AForm::operator=(const AForm& other)
 {
     if (this == &other)
         return *this;
-
     this->isSigned = other.isSigned;
-
     return *this;
 }
 
@@ -37,7 +35,7 @@ AForm::~AForm()
 
 }
 
-const std::string AForm::getName() const
+const std::string& AForm::getName() const
 {
     return (name);
 }
@@ -85,4 +83,13 @@ const char* AForm::GradeTooLowException::what() const throw()
     return "Form grade too low!";
 }
 
-AForm::execute()
+
+void AForm::execute(Bureaucrat const & executor) const
+{
+    if (!isSigned)
+        throw GradeTooLowException(); 
+    if (executor.getGrade() > gradeToExecute)
+        throw GradeTooLowException();
+
+    executeAction();
+}

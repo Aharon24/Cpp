@@ -2,17 +2,13 @@
 #include "Bureaucrat.hpp"
 #include <fstream>
 
-
-
-ShrubberyCreationForm::ShrubberyCreationForm()
-{
-
-}
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
+: AForm("ShrubberyCreationForm", 145, 137), target(target)
 {
-
+    
 }
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
+: AForm(other), target(other.target)
 {
 
 }
@@ -25,7 +21,21 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 {
     if (this != &other)
     {
+        AForm::operator=(other);
         this->target = other.target;
     }
     return *this;
+}
+
+void ShrubberyCreationForm::executeAction() const
+{
+    std::ofstream file((target + "_shrubbery").c_str());
+    if (!file)
+    return;
+    file <<
+        "   *\n"
+        "  ***\n"
+        " *****\n"
+        "*******\n"
+        "  |||\n";
 }

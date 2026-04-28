@@ -26,14 +26,14 @@ public:
 
 
     //get
-    const std::string getName() const;
+    const std::string &getName() const;
     bool getIsSigned() const;
     int getGradeToSign() const;
     int getGradeToExecute() const;
 
 
-    virtual void execute(Bureaucrat const & executor) const = 0;
-
+    void execute(Bureaucrat const & executor) const;
+    virtual void executeAction() const = 0;
     //main logic
     void beSigned(const Bureaucrat& b);
 
