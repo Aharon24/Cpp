@@ -79,6 +79,19 @@ int main()
     {
         std::cout << "Error: " << e.what() << std::endl;
     }
+    std::cout << "\n=== SUCCESS SIGN TEST ===" << std::endl;
+    try
+    {
+        Bureaucrat boss("Boss", 1);
+        Form form("FormB", 40, 30);
+    
+        boss.signForm(form);
+        std::cout << form << std::endl;
+    }
+    catch (std::exception &e)
+    {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
 
     return 0;
 }
