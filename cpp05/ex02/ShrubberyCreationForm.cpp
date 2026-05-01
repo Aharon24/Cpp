@@ -31,7 +31,7 @@ void ShrubberyCreationForm::executeAction() const
 {
     std::ofstream file((target + "_shrubbery").c_str());
     if (!file)
-    return;
+        return;
     file <<
         "   *\n"
         "  ***\n"
