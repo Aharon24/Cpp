@@ -1,10 +1,46 @@
 #include "ScalarConverter.hpp"
-
+#include <string>
+#include <string>
 ScalarConverter::ScalarConverter()
 {
 
 }
-bool isInt(const std::string &s)
+
+// static bool IsDouble(std::string s)
+// {
+	
+// }
+
+static bool IsFloat(const std::string &s)
+{
+	bool dot = false;
+	bool digit = false;
+	size_t i = 0;
+	if (s == "nanf" || s == "+inff" || s == "-inff")
+			return (true);
+	if (s.empty() || s[s.length() - 1] != 'f')
+		return (false);
+	if (s[i] == '-' || s[i] == '+')
+		i++;
+	while (i < s.length() - 1)
+	{
+		if(s[i] == '.')
+		{
+			if(dot)
+				return (false);
+			else
+				dot = true;
+		}
+		else if(std::isdigit(s[i]))
+			digit = (true);
+		else
+			return (false);
+		i++;
+	}
+	return (dot && digit);
+}
+
+static bool isInt(const std::string &s)
 {
 	size_t i = 0;
 	if (s.empty())
@@ -30,6 +66,10 @@ static Type detectType(const std::string &literal)
 		return CHAR;
 	else if(isInt(literal))
 		return INT;
+	else if (IsFloat(literal))
+		return (FLOAT);
+	// else if (IsDouble(literal))
+	// 	return (DOUBLE);
 	return UNKNOWN;
 }
 
@@ -42,10 +82,10 @@ void ScalarConverter::convert(const std::string &literal)
 		s = "Char";
 	if (type == 1)
 		s = "INT";
+	if (type == 2)
+		s = "FLOAT";
     std::cout << "Detected type: "<< s <<" "<< type << std::endl;
 }
-
-
 
 ScalarConverter::~ScalarConverter()
 {
