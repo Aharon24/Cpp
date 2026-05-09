@@ -6,10 +6,38 @@ ScalarConverter::ScalarConverter()
 
 }
 
-// static bool IsDouble(std::string s)
-// {
-	
-// }
+static bool IsDouble(std::string s)
+{
+	bool dot;
+	bool digit;
+	size_t i;
+
+	i = 0;
+	dot = false;
+	digit = false;
+	if (s == "nan" || s == "+inf" || s == "-inf")
+			return (true);
+	if (s.empty())
+		return (false);
+	if (s[i] == '-' || s[i] == '+')
+		i++;
+	while(i < s.length())
+	{
+		if(s[i] == '.')
+		{
+			if(dot)
+				return (false);
+			else
+				dot = true;
+		}
+		else if(std::isdigit(s[i]))
+			digit = (true);
+		else
+			return (false);
+		i++;
+	}
+	return (digit);
+}
 
 static bool IsFloat(const std::string &s)
 {
@@ -68,8 +96,8 @@ static Type detectType(const std::string &literal)
 		return INT;
 	else if (IsFloat(literal))
 		return (FLOAT);
-	// else if (IsDouble(literal))
-	// 	return (DOUBLE);
+	else if (IsDouble(literal))
+		return (DOUBLE);
 	return UNKNOWN;
 }
 
@@ -84,6 +112,8 @@ void ScalarConverter::convert(const std::string &literal)
 		s = "INT";
 	if (type == 2)
 		s = "FLOAT";
+	if (type == 3)
+		s = "DOUBLE";
     std::cout << "Detected type: "<< s <<" "<< type << std::endl;
 }
 
