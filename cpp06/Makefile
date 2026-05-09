@@ -1,8 +1,8 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = Intern
+NAME = ScalarConverter
 
-SRCS = ScalarConverter
+SRCS = ScalarConverter.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
