@@ -1,6 +1,4 @@
 #include "ScalarConverter.hpp"
-#include <string>
-#include <string>
 ScalarConverter::ScalarConverter()
 {
 
@@ -101,19 +99,80 @@ static Type detectType(const std::string &literal)
 	return UNKNOWN;
 }
 
+static void printAll(double d)
+{
+
+}
+
+static void  ft_conv_int(const std::string &conv)
+{
+	int v;
+	double d;
+
+	v = std::atoi(conv.c_str());
+	d = static_cast<double>(v);
+	printAll(d);
+
+}
+static void  ft_conv_char(const std::string &conv)
+{
+	int v;
+	double d;
+
+	v = std::atoi(conv.c_str());
+	d = static_cast<double>(v);
+}
+static void  ft_conv_float(const std::string &conv)
+{
+	float v;
+	double d;
+
+	v = std::strtof(conv.c_str(), NULL);
+	d = static_cast<double>(v);
+}
+static void  ft_conv_double(const std::string &conv)
+{
+	int v;
+	double d;
+
+	v =  d = std::strtod(conv.c_str(), NULL);
+	d = static_cast<double>(v);
+	printAll(d);
+}
+
+static void ft_convert(Type type, const std::string &conv)
+{
+	if (type == CHAR)
+		ft_conv_char(conv);
+	else if (type == INT)
+		ft_conv_int(conv);
+	else if (type == FLOAT)
+		ft_conv_float(conv);
+	else if (type == DOUBLE)
+		ft_conv_double(conv);
+	else 
+		return ;
+}
+
 void ScalarConverter::convert(const std::string &literal)
 {
 	std::string s;
 	std::cout << "Input: " << literal << std::endl;
     Type type = detectType(literal);
-	if (type == 0)
+	if (type == CHAR)
 		s = "Char";
-	if (type == 1)
+	if (type == INT)
 		s = "INT";
-	if (type == 2)
+	if (type == FLOAT)
 		s = "FLOAT";
-	if (type == 3)
+	if (type == DOUBLE)
 		s = "DOUBLE";
+	if (type == UNKNOWN)
+	{
+    	std::cout << "Invalid literal" << std::endl;
+    	return;
+	}
+	ft_convert(type,literal);
     std::cout << "Detected type: "<< s <<" "<< type << std::endl;
 }
 
