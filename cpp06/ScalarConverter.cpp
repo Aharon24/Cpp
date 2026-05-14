@@ -1,4 +1,6 @@
 #include "ScalarConverter.hpp"
+
+
 ScalarConverter::ScalarConverter()
 {
 
@@ -99,9 +101,17 @@ static Type detectType(const std::string &literal)
 	return UNKNOWN;
 }
 
-static void printAll(double d)
+static void  ft_conv_char(const std::string &conv)
 {
+	char  v;
+	double d;
 
+	v = conv[0];
+	d = static_cast<double>(v);
+	ScalarConverter::printChar(d);
+    ScalarConverter::printInt(d);
+    ScalarConverter::printFloat(d);
+    ScalarConverter::printDouble(d);
 }
 
 static void  ft_conv_int(const std::string &conv)
@@ -111,16 +121,10 @@ static void  ft_conv_int(const std::string &conv)
 
 	v = std::atoi(conv.c_str());
 	d = static_cast<double>(v);
-	printAll(d);
-
-}
-static void  ft_conv_char(const std::string &conv)
-{
-	int v;
-	double d;
-
-	v = std::atoi(conv.c_str());
-	d = static_cast<double>(v);
+	ScalarConverter::printChar(d);
+    ScalarConverter::printInt(d);
+    ScalarConverter::printFloat(d);
+    ScalarConverter::printDouble(d);
 }
 static void  ft_conv_float(const std::string &conv)
 {
@@ -129,6 +133,10 @@ static void  ft_conv_float(const std::string &conv)
 
 	v = std::strtof(conv.c_str(), NULL);
 	d = static_cast<double>(v);
+	ScalarConverter::printChar(d);
+    ScalarConverter::printInt(d);
+    ScalarConverter::printFloat(d);
+    ScalarConverter::printDouble(d);
 }
 static void  ft_conv_double(const std::string &conv)
 {
@@ -137,10 +145,13 @@ static void  ft_conv_double(const std::string &conv)
 
 	v =  d = std::strtod(conv.c_str(), NULL);
 	d = static_cast<double>(v);
-	printAll(d);
+	ScalarConverter::printChar(d);
+    ScalarConverter::printInt(d);
+    ScalarConverter::printFloat(d);
+    ScalarConverter::printDouble(d);
 }
 
-static void ft_convert(Type type, const std::string &conv)
+void ScalarConverter::ft_convert(Type type, const std::string &conv)
 {
 	if (type == CHAR)
 		ft_conv_char(conv);
