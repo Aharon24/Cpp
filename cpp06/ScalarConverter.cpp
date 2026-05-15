@@ -101,91 +101,141 @@ static Type detectType(const std::string &literal)
 	return UNKNOWN;
 }
 
-static void  ft_conv_char(const std::string &conv)
-{
-	char  v;
-	double d;
-
-	v = conv[0];
-	d = static_cast<double>(v);
-	ScalarConverter::printChar(d);
-    ScalarConverter::printInt(d);
-    ScalarConverter::printFloat(d);
-    ScalarConverter::printDouble(d);
-}
-
-static void  ft_conv_int(const std::string &conv)
-{
-	int v;
-	double d;
-
-	v = std::atoi(conv.c_str());
-	d = static_cast<double>(v);
-	ScalarConverter::printChar(d);
-    ScalarConverter::printInt(d);
-    ScalarConverter::printFloat(d);
-    ScalarConverter::printDouble(d);
-}
-static void  ft_conv_float(const std::string &conv)
-{
-	float v;
-	double d;
-
-	v = std::strtof(conv.c_str(), NULL);
-	d = static_cast<double>(v);
-	ScalarConverter::printChar(d);
-    ScalarConverter::printInt(d);
-    ScalarConverter::printFloat(d);
-    ScalarConverter::printDouble(d);
-}
-static void  ft_conv_double(const std::string &conv)
-{
-	int v;
-	double d;
-
-	v =  d = std::strtod(conv.c_str(), NULL);
-	d = static_cast<double>(v);
-	ScalarConverter::printChar(d);
-    ScalarConverter::printInt(d);
-    ScalarConverter::printFloat(d);
-    ScalarConverter::printDouble(d);
-}
 
 void ScalarConverter::ft_convert(Type type, const std::string &conv)
 {
+	double d;
+	float f;
+
+	d = 0;
+	f = 0.0;
 	if (type == CHAR)
-		ft_conv_char(conv);
+		d = static_cast<double>(conv[0]);
 	else if (type == INT)
-		ft_conv_int(conv);
+		d = static_cast<double>(std::atoi(conv.c_str()));
 	else if (type == FLOAT)
-		ft_conv_float(conv);
+	{
+		f = static_cast<float>(std::strtod(conv.c_str(), NULL));
+		d = static_cast<double>(f);
+	}
 	else if (type == DOUBLE)
-		ft_conv_double(conv);
+		d = std::strtod(conv.c_str(), NULL);
 	else 
 		return ;
+	ScalarConverter::printChar(d);
+    ScalarConverter::printInt(d);
+    ScalarConverter::printFloat(d);
+    ScalarConverter::printDouble(d);
 }
 
 void ScalarConverter::convert(const std::string &literal)
 {
-	std::string s;
-	std::cout << "Input: " << literal << std::endl;
     Type type = detectType(literal);
-	if (type == CHAR)
-		s = "Char";
-	if (type == INT)
-		s = "INT";
-	if (type == FLOAT)
-		s = "FLOAT";
-	if (type == DOUBLE)
-		s = "DOUBLE";
+
 	if (type == UNKNOWN)
 	{
     	std::cout << "Invalid literal" << std::endl;
     	return;
 	}
 	ft_convert(type,literal);
-    std::cout << "Detected type: "<< s <<" "<< type << std::endl;
 }
+
+
+
+void ScalarConverter::printChar(double d)
+{
+    char c;
+    std::cout << "char: ";
+    if (d < 0 || d > 127)
+    {
+        std::cout << "impossible" << std::endl;
+        return;
+    }
+    if (std::isnan(d) || std::isinf(d))
+    {
+        std::cout << "impossible" << std::endl;
+        return;
+    }
+    c = static_cast<char>(d);
+    if (!std::isprint(c))
+    {
+        std::cout << "Non displayable" << std::endl;
+        return;
+    }
+    std::cout << "'" << c << "'" << std::endl;
+}
+void ScalarConverter::printInt(double d)
+{
+    int v;
+
+    v = 0;
+    std::cout << "int: ";
+    if (std::isnan(d) || std::isinf(d))
+    {
+        std::cout << "impossible" << std::endl;
+        return;
+    }
+    if (d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max())
+    {
+        std::cout << "impossible" << std::endl;
+        return;
+    }
+    v = static_cast<int>(d);
+    std::cout << v << std::endl;
+}
+
+void ScalarConverter::printFloat(double d)
+{
+    float f;
+
+    f = 0;
+    std::cout << "float: ";
+    if (std::isnan(d))
+    {
+        std::cout << "nanf" << std::endl;
+        return;
+    }
+    if (std::isinf(d))
+    {
+        if (d > 0)
+            std::cout << "+inff" << std::endl;
+        else
+            std::cout << "-inff" << std::endl;
+        return;
+    }
+    if (d < -std::numeric_limits<float>::max()
+        || d > std::numeric_limits<float>::max())
+    {
+        std::cout << "impossible" << std::endl;
+        return;
+    }
+    f = static_cast<float>(d);
+    if (f == static_cast<int>(f))
+        std::cout << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+    else
+        std::cout << f << "f" << std::endl;
+}
+
+void ScalarConverter::printDouble(double d)
+{
+    std::cout << "double: ";
+    if (std::isnan(d))
+    {
+        std::cout << "nan" << std::endl;
+        return;
+    }
+    if (std::isinf(d))
+    {
+        if (d > 0)
+            std::cout << "+inf" << std::endl;
+        else
+            std::cout << "-inf" << std::endl;
+        return;
+    }
+    std::cout << std::fixed << std::setprecision(1)
+              << d << std::endl;
+}
+
 
 ScalarConverter::~ScalarConverter()
 {
