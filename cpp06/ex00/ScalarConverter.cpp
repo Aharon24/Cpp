@@ -106,13 +106,18 @@ void ScalarConverter::ft_convert(Type type, const std::string &conv)
 {
 	double d;
 	float f;
+	long l;
 
+	l = 0;
 	d = 0;
 	f = 0.0;
 	if (type == CHAR)
 		d = static_cast<double>(conv[0]);
 	else if (type == INT)
-		d = static_cast<double>(std::atoi(conv.c_str()));
+	{
+		l = std::strtol(conv.c_str(), NULL, 10);
+		d = static_cast<double>(l);
+	}
 	else if (type == FLOAT)
 	{
 		f = static_cast<float>(std::strtod(conv.c_str(), NULL));
