@@ -19,46 +19,46 @@ void addExclamation(T& value)
     value += "!";
 }
 
-// int main()
-// {
-//     std::cout << "----- INT ARRAY -----" << std::endl;
+int main()
+{
+    std::cout << "----- INT ARRAY -----" << std::endl;
 
-//     int numbers[] = {1, 2, 3, 4};
+    int numbers[] = {1, 2, 3, 4};
 
-//     iter(numbers, 4, print<int>);
+    iter(numbers, 4, print<int>);
 
-//     iter(numbers, 4, increment<int>);
+    iter(numbers, 4, increment<int>);
 
-//     std::cout << "After increment:" << std::endl;
+    std::cout << "After increment:" << std::endl;
 
-//     iter(numbers, 4, print<int>);
+    iter(numbers, 4, print<int>);
 
-//     std::cout << std::endl;
-
-
-//     std::cout << "----- STRING ARRAY -----" << std::endl;
-
-//     std::string words[] = {"hello", "world", "cpp"};
-
-//     iter(words, 3, print<std::string>);
-
-//     iter(words, 3, addExclamation<std::string>);
-
-//     std::cout << "After modification:" << std::endl;
-
-//     iter(words, 3, print<std::string>);
-
-//     std::cout << std::endl;
+    std::cout << std::endl;
 
 
-//     std::cout << "----- CONST ARRAY -----" << std::endl;
+    std::cout << "----- STRING ARRAY -----" << std::endl;
 
-//     const int constArr[] = {10, 20, 30};
+    std::string words[] = {"hello", "world", "cpp"};
 
-//     iter(constArr, 3, print<int>);
+    iter(words, 3, print<std::string>);
 
-//     return 0;
-// // }
+    iter(words, 3, addExclamation<std::string>);
+
+    std::cout << "After modification:" << std::endl;
+
+    iter(words, 3, print<std::string>);
+
+    std::cout << std::endl;
+
+
+    std::cout << "----- CONST ARRAY -----" << std::endl;
+
+    const int constArr[] = {10, 20, 30};
+
+    iter(constArr, 3, print<int>);
+
+    return 0;
+}
 
 // int main()
 // {
