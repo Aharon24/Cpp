@@ -4,7 +4,10 @@
 
 #include <vector>
 #include <stdexcept>
+#include <iterator>
+#include <stdexcept>
 #include <algorithm>
+#include <iostream>
 
 class Span
 {
@@ -21,8 +24,11 @@ public:
     void addNumber(int n);
     int shortestSpan() const;
     int longestSpan() const;
+
+    template <typename Iterator>
+    void addNumbers(Iterator begin, Iterator end);
 };
 
-
+#include "Span.tpp"
 
 #endif
