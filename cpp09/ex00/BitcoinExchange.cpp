@@ -107,14 +107,29 @@ void BitcoinExchange::convert_for_map(const std::string &line)
     _database[data] = data_d;
 
 }
+
 void BitcoinExchange::calculate(std::string data, std::string value)
 {
     double v;
+    double re;
     std::map<std::string, double>::iterator it;
 
+    if (_database.empty())
+        return;
+    
     v = std::atof(value.c_str());
+    
     it = _database.lower_bound(data);
 
+    if (it == _database.begin() && it->first > data)
+    {
+        std::cout << "Error: no lower date available" << std::endl;
+        return;
+    }
+    if (it == _database.end() || it->first > data)
+        --it;
+    re = v * it->second;
+    std::cout << data << " => " << value << " = " << re << std::endl;
 }
 
 
@@ -188,7 +203,7 @@ void BitcoinExchange::processInput(const std::string &filename)
     }
     if (!std::getline(file, line))
         return;
-    std::getline(file, line);
+    // std::getline(file, line);
     while (std::getline(file, line))
     {
         ft_input_work(line);
